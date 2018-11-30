@@ -1,0 +1,37 @@
+<!--
+  Generated template for the FilmsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar color='primary'>
+        <ion-title>Séries</ion-title>
+        <ion-buttons end class='search-bar'>
+            <ion-searchbar #search (ionChange)='searchSeries(search.value)'></ion-searchbar>
+        </ion-buttons>
+    </ion-navbar>
+
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-grid>
+        <ion-row>
+            <ion-col col-6 col-md-4 col-lg-2 *ngFor='let serie of series'>
+                <ion-card class='card' class="movie-info">
+
+                    <img class="img-poster" src="http://img.omdbapi.com/?i={{serie.imdbID}}&h=600&apikey=75522b56"/>
+
+                    <div class="card-subtitle">
+                        <ion-row>
+                            <h2>{{serie.Title}}</h2>
+                        </ion-row>
+                    </div>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
