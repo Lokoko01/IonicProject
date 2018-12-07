@@ -28,4 +28,15 @@ export class SeriesProvider {
         })
     }
 
+    getSerieDetails(imdbID: string) {
+        return new Promise(resolve => {
+            this.http.get(this.apiUrl + 'i=' + imdbID + '&plot=full')
+                .subscribe(data => {
+                    resolve(data);
+                }, err => {
+                    console.log(err);
+                });
+        })
+    }
+
 }

@@ -13,6 +13,8 @@ import {TabContentPage} from "../pages/tab-content/tab-content";
 import {MoviesProvider} from '../providers/movies/movies';
 import {SeriesProvider} from '../providers/series/series';
 import {HttpClientModule} from "@angular/common/http";
+import {MovieDetailsPage} from "../pages/movie-details/movie-details";
+import {SerieDetailsPage} from "../pages/serie-details/serie-details";
 
 @NgModule({
     declarations: [
@@ -21,7 +23,9 @@ import {HttpClientModule} from "@angular/common/http";
         FilmsPage,
         SeriesPage,
         ListePage,
-        TabContentPage
+        TabContentPage,
+        MovieDetailsPage,
+        SerieDetailsPage
     ],
     imports: [
         BrowserModule,
@@ -35,7 +39,9 @@ import {HttpClientModule} from "@angular/common/http";
         FilmsPage,
         SeriesPage,
         ListePage,
-        TabContentPage
+        TabContentPage,
+        MovieDetailsPage,
+        SerieDetailsPage
     ],
     providers: [
         StatusBar,

@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {MoviesProvider} from "../../providers/movies/movies";
 import {HttpClient} from "@angular/common/http";
+import {NavController} from "ionic-angular";
+import {MovieDetailsPage} from "../movie-details/movie-details";
 
 /**
  * Generated class for the FilmsPage page.
@@ -16,8 +18,9 @@ import {HttpClient} from "@angular/common/http";
 export class FilmsPage {
 
     movies;
+    public isSearchbarOpened = false;
 
-    constructor(public moviesProvider: MoviesProvider, public http: HttpClient) {
+    constructor(public navCtrl: NavController, public moviesProvider: MoviesProvider, public http: HttpClient) {
     }
 
     ionViewDidLoad() {
@@ -29,12 +32,17 @@ export class FilmsPage {
         this.moviesProvider.searchMovie(search)
             .then(data => {
                 this.movies = data;
-                console.log(this.movies);
+                if (this.movies != null) {
+                    this.movies.Poster = 'http://img.omdbapi.com/?apikey=75522b56&i=' + this.movies.imdbID;
+                }
             });
     }
 
-    private reset(){
+    private reset() {
         this.movies = [];
     }
 
+    goToDetails(imdbID: string) {
+        this.navCtrl.push(MovieDetailsPage, {imdbID: imdbID});
+    }
 }

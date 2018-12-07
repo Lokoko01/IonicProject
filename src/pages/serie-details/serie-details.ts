@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
-import {MoviesProvider} from "../../providers/movies/movies";
+import {SeriesProvider} from "../../providers/series/series";
 
 /**
- * Generated class for the MovieDetailsPage page.
+ * Generated class for the SerieDetailsPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,10 +11,10 @@ import {MoviesProvider} from "../../providers/movies/movies";
 
 @IonicPage()
 @Component({
-    selector: 'page-movie-details',
-    templateUrl: 'movie-details.html',
+    selector: 'page-serie-details',
+    templateUrl: 'serie-details.html',
 })
-export class MovieDetailsPage {
+export class SerieDetailsPage {
 
     details;
     actors;
@@ -25,13 +25,13 @@ export class MovieDetailsPage {
     public isDescriptionShown = false;
     public isAwardsShown = false;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public moviesProvider: MoviesProvider) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public seriesProvider: SeriesProvider) {
 
     }
 
     ionViewDidLoad() {
         const imdbID = this.navParams.get('imdbID');
-        this.moviesProvider.getMovieDetails(imdbID)
+        this.seriesProvider.getSerieDetails(imdbID)
             .then(data => {
                 this.details = data;
                 if (this.details != null) {

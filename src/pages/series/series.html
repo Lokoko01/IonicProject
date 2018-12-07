@@ -7,9 +7,14 @@
 <ion-header>
 
     <ion-navbar color='primary'>
-        <ion-title>Séries</ion-title>
-        <ion-buttons end class='search-bar'>
-            <ion-searchbar #search (ionChange)='searchSeries(search.value)'></ion-searchbar>
+        <ion-title *ngIf="!isSearchbarOpened">Séries</ion-title>
+
+        <ion-searchbar *ngIf="isSearchbarOpened" #search (ionChange)='searchSeries(search.value)' showCancelButton="true"
+                       (ionCancel)="isSearchbarOpened=false"></ion-searchbar>
+        <ion-buttons end>
+            <button ion-button icon-only *ngIf="!isSearchbarOpened" (click)="isSearchbarOpened=true">
+                <ion-icon name="md-search"></ion-icon>
+            </button>
         </ion-buttons>
     </ion-navbar>
 
@@ -21,7 +26,7 @@
     <ion-grid>
         <ion-row>
             <ion-col col-6 col-md-4 col-lg-2 *ngFor='let serie of series'>
-                <ion-card class='card' class="movie-info">
+                <ion-card class='card' class="movie-info" (click)='goToDetails(serie.imdbID)'>
 
                     <img class="img-poster" src="http://img.omdbapi.com/?i={{serie.imdbID}}&h=600&apikey=75522b56"/>
 

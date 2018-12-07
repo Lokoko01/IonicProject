@@ -1,13 +1,22 @@
 page-films {
   .card-subtitle {
-    font-size: 1.0em;
     padding: 10px;
     bottom: 10px;
     width: 100%;
-    color: #34495e;
+    margin-top: -80px;
   }
 
-  .search-bar {
-    max-width: 60%;
+  .card-subtitle h2 {
+    font-size: 1em;
+    color: #ffffff;
+    width: 100%;
+    padding: 10px;
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.7);
+    text-align: center;
+  }
+
+  .card:hover {
+    cursor: pointer;
   }
 }

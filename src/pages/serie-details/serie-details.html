@@ -1,0 +1,115 @@
+<ion-header>
+  <ion-navbar color='primary'>
+    <ion-title *ngIf="details">
+      {{details.Title}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card *ngIf="details">
+    <img src="{{details.Poster}}"/>
+
+    <div class="card-subtitle">
+      <ion-list>
+        <ion-item class="item-info">
+          <ion-badge color="dark" class="badge-info" *ngFor="let genre of genres"
+                     item-start>{{genre}}</ion-badge>
+        </ion-item>
+      </ion-list>
+      <ion-row class="small-padding">
+        <ion-col>
+          <button ion-button clear small color="info" icon-start>
+            <ion-icon name='star'></ion-icon>
+            {{details.imdbRating}}
+          </button>
+        </ion-col>
+        <ion-col>
+          <button ion-button clear small color="info" icon-start>
+            <ion-icon name='calendar'></ion-icon>
+            {{details.Released | date: 'dd/MM/yyyy'}}
+          </button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="small-padding">
+        <ion-col>
+          <button ion-button clear small color="info" icon-start>
+            <ion-icon name='md-people'></ion-icon>
+            {{details.imdbVotes}}
+          </button>
+        </ion-col>
+        <ion-col>
+          <button ion-button clear small color="danger" icon-start>
+            <ion-icon name='md-eye-off'></ion-icon>
+            {{details.Rated}}
+          </button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="small-padding">
+        <ion-col>
+          <button ion-button clear small color="info" icon-start>
+            <ion-icon name='ios-timer-outline'></ion-icon>
+            {{details.Runtime}}
+          </button>
+        </ion-col>
+        <ion-col>
+          <button ion-button clear small color="info" icon-start>
+            <ion-icon name='ios-link'></ion-icon>
+            <a href="{{details.Website}}" target="_blank">Website</a>
+          </button>
+        </ion-col>
+      </ion-row>
+
+      <!-- Sections -->
+      <ion-item-divider class="button-section" color="divider" (click)="awardsClicked()">
+        <span class="section">Prix et récompenses</span>
+        <ion-icon name="md-albums" class="dropdown-section"></ion-icon>
+      </ion-item-divider>
+      <div *ngIf="isAwardsShown">
+        <ion-item>
+          {{details.Awards}}
+        </ion-item>
+      </div>
+
+      <ion-item-divider class="button-section" color="divider" (click)="descriptionClicked()">
+        <span class="section">Description</span>
+        <ion-icon name="md-albums" class="dropdown-section"></ion-icon>
+      </ion-item-divider>
+      <div *ngIf="isDescriptionShown">
+        <ion-item text-wrap text-justify>
+          {{details.Plot}}
+        </ion-item>
+      </div>
+
+      <ion-item-divider class="button-section" color="divider" (click)="directorClicked()">
+        <span class="section">Producteur</span>
+        <ion-icon name="md-albums" class="dropdown-section"></ion-icon>
+      </ion-item-divider>
+      <div *ngIf="isDirectorShown">
+        <ion-item>
+          {{details.Director}}
+        </ion-item>
+      </div>
+
+      <ion-item-group>
+        <ion-item-divider class="button-section" color="divider" (click)="actorsClicked()">
+          <span class="section">Les acteurs</span>
+          <ion-icon name="md-albums" class="dropdown-section"></ion-icon>
+        </ion-item-divider>
+        <div *ngIf="isActorsShown">
+          <ion-list *ngFor="let actor of actors">
+            <ion-item>
+              {{actor}}
+            </ion-item>
+          </ion-list>
+        </div>
+      </ion-item-group>
+
+    </div>
+
+  </ion-card>
+
+</ion-content>
