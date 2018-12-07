@@ -13,7 +13,7 @@ page-serie-details {
     text-transform: lowercase;
   }
 
-  .badge-info{
+  .badge-info {
     margin-top: 0px !important;
     margin-bottom: 0px !important;
   }
@@ -30,5 +30,13 @@ page-serie-details {
   .button-section {
     cursor: pointer;
     margin-top: 1px;
+  }
+
+  .odd {
+    background-color: transparent;
+  }
+
+  .even {
+    background-color: #f5f6fa;
   }
 }

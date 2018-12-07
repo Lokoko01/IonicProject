@@ -31,4 +31,12 @@ page-movie-details {
     cursor: pointer;
     margin-top: 1px;
   }
+
+  .odd {
+    background-color: transparent;
+  }
+
+  .even {
+    background-color: #f5f6fa;
+  }
 }

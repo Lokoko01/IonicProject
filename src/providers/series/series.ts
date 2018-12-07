@@ -39,4 +39,16 @@ export class SeriesProvider {
         })
     }
 
+    getSeasonDetails(imdbID: string, numSeason: number) {
+        console.log(this.apiUrl + 'i=' + imdbID + '&Season=' + numSeason);
+        return new Promise(resolve => {
+            this.http.get(this.apiUrl + 'i=' + imdbID + '&Season=' + numSeason)
+                .subscribe(data => {
+                    resolve(data);
+                }, err => {
+                    console.log(err);
+                });
+        })
+    }
+
 }

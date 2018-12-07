@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {SeriesProvider} from "../../providers/series/series";
+import {SeasonDetailsPage} from "../season-details/season-details";
 
 /**
  * Generated class for the SerieDetailsPage page.
@@ -20,10 +21,12 @@ export class SerieDetailsPage {
     actors;
     genres;
     awards;
+    nbSeasons = [];
     public isActorsShown = false;
     public isDirectorShown = false;
     public isDescriptionShown = false;
     public isAwardsShown = false;
+    public isSeasonsShown = false;
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public seriesProvider: SeriesProvider) {
 
@@ -40,6 +43,9 @@ export class SerieDetailsPage {
                 this.actors = this.details.Actors.split(',');
                 this.genres = this.details.Genre.split(',');
                 this.awards = this.details.Awards.split('.');
+
+                for (let i = 0; i < this.details.totalSeasons; i++)
+                    this.nbSeasons.push(i + 1);
             });
     }
 
@@ -57,6 +63,14 @@ export class SerieDetailsPage {
 
     awardsClicked() {
         this.isAwardsShown = !this.isAwardsShown;
+    }
+
+    seasonsClicked() {
+        this.isSeasonsShown = !this.isSeasonsShown;
+    }
+
+    goToSeason(imdbID: string, numSeason: number) {
+        this.navCtrl.push(SeasonDetailsPage, {imdbID: imdbID, numSeason: numSeason});
     }
 
 }

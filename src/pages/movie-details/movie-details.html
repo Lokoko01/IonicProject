@@ -22,7 +22,7 @@
                 <ion-col>
                     <button ion-button clear small color="info" icon-start>
                         <ion-icon name='star'></ion-icon>
-                        {{details.imdbRating}}
+                        {{details.imdbRating}}/10
                     </button>
                 </ion-col>
                 <ion-col>
@@ -37,7 +37,7 @@
                 <ion-col>
                     <button ion-button clear small color="info" icon-start>
                         <ion-icon name='md-people'></ion-icon>
-                        {{details.imdbVotes}}
+                        {{details.imdbVotes}} votes
                     </button>
                 </ion-col>
                 <ion-col>
@@ -100,8 +100,8 @@
                     <ion-icon name="md-albums" class="dropdown-section"></ion-icon>
                 </ion-item-divider>
                 <div *ngIf="isActorsShown">
-                    <ion-list *ngFor="let actor of actors">
-                        <ion-item>
+                    <ion-list *ngFor="let actor of actors; let i = index;">
+                        <ion-item [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
                             {{actor}}
                         </ion-item>
                     </ion-list>

@@ -1,0 +1,36 @@
+<!--
+  Generated template for the SeasonDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title *ngIf="details">{{details.Title}} - Saison {{details.Season}}</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <div *ngIf="details">
+        <ion-list *ngFor="let episode of details.Episodes">
+            <ion-item>
+                <h2>
+                    <ion-badge color="divider" class="badge-info" item-start>Épisode {{episode.Episode}}</ion-badge>
+                    {{episode.Title}}
+                </h2>
+                <button ion-button clear small color="divider" icon-start>
+                    <ion-icon name='calendar'></ion-icon>
+                    {{episode.Released | date: 'dd/MM/yyyy'}}
+                </button>
+                <button ion-button clear small color="info" icon-start>
+                    <ion-icon name='star'></ion-icon>
+                    {{episode.imdbRating}}
+                </button>
+                <hr>
+            </ion-item>
+        </ion-list>
+    </div>
+</ion-content>
