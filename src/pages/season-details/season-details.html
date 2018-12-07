@@ -16,7 +16,7 @@
 <ion-content padding>
     <div *ngIf="details">
         <ion-list *ngFor="let episode of details.Episodes">
-            <ion-item>
+            <ion-item (click)='goToEpisode(episode.Episode, details.Season, details.Title)'>
                 <h2>
                     <ion-badge color="divider" class="badge-info" item-start>Épisode {{episode.Episode}}</ion-badge>
                     {{episode.Title}}
@@ -27,7 +27,7 @@
                 </button>
                 <button ion-button clear small color="info" icon-start>
                     <ion-icon name='star'></ion-icon>
-                    {{episode.imdbRating}}
+                    {{episode.imdbRating}}/10
                 </button>
                 <hr>
             </ion-item>

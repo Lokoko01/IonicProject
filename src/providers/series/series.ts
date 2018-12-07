@@ -51,4 +51,15 @@ export class SeriesProvider {
         })
     }
 
+    getEpisodeDetails(numEpisode: number, numSeason: number, title: string) {
+        return new Promise(resolve => {
+            this.http.get(this.apiUrl + 'Episode=' + numEpisode + '&Season=' + numSeason + '&t=' + title)
+                .subscribe(data => {
+                    resolve(data);
+                }, err => {
+                    console.log(err);
+                });
+        })
+    }
+
 }

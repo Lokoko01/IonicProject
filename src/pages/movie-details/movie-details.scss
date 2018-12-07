@@ -1,6 +1,7 @@
 page-movie-details {
   .item-md {
     font-size: 1em;
+    margin-left: -20px;
   }
 
   .badge-info {
@@ -38,5 +39,15 @@ page-movie-details {
 
   .even {
     background-color: #f5f6fa;
+  }
+
+  .poster {
+    width: auto;
+    display: inline-block;
+    margin: auto;
+  }
+
+  .poster img {
+    margin: auto;
   }
 }

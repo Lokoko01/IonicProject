@@ -16,6 +16,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {MovieDetailsPage} from "../pages/movie-details/movie-details";
 import {SerieDetailsPage} from "../pages/serie-details/serie-details";
 import {SeasonDetailsPage} from "../pages/season-details/season-details";
+import {EpisodeDetailsPage} from "../pages/episode-details/episode-details";
 
 @NgModule({
     declarations: [
@@ -27,7 +28,8 @@ import {SeasonDetailsPage} from "../pages/season-details/season-details";
         TabContentPage,
         MovieDetailsPage,
         SerieDetailsPage,
-        SeasonDetailsPage
+        SeasonDetailsPage,
+        EpisodeDetailsPage
     ],
     imports: [
         BrowserModule,
@@ -44,7 +46,8 @@ import {SeasonDetailsPage} from "../pages/season-details/season-details";
         TabContentPage,
         MovieDetailsPage,
         SerieDetailsPage,
-        SeasonDetailsPage
+        SeasonDetailsPage,
+        EpisodeDetailsPage
     ],
     providers: [
         StatusBar,

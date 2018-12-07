@@ -35,7 +35,6 @@ export class SeriesPage {
                 if (this.series != null) {
                     this.series.Poster = 'http://img.omdbapi.com/?apikey=75522b56&i=' + this.series.imdbID;
                 }
-                console.log(this.series);
             });
     }
 

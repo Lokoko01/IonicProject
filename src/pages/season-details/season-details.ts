@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {SeriesProvider} from "../../providers/series/series";
+import {EpisodeDetailsPage} from "../episode-details/episode-details";
 
 /**
  * Generated class for the SeasonDetailsPage page.
@@ -31,5 +32,9 @@ export class SeasonDetailsPage {
     }
 
     // TODO: gérer exception saison 8 game of thrones
+
+    goToEpisode(numEpisode: string, numSeason: number, title: string) {
+        this.navCtrl.push(EpisodeDetailsPage, {numEpisode: numEpisode, numSeason: numSeason, title: title});
+    }
 
 }
