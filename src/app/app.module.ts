@@ -17,6 +17,7 @@ import {MovieDetailsPage} from "../pages/movie-details/movie-details";
 import {SerieDetailsPage} from "../pages/serie-details/serie-details";
 import {SeasonDetailsPage} from "../pages/season-details/season-details";
 import {EpisodeDetailsPage} from "../pages/episode-details/episode-details";
+import {YoutubeVideoPlayer} from "@ionic-native/youtube-video-player";
 
 @NgModule({
     declarations: [
@@ -54,7 +55,8 @@ import {EpisodeDetailsPage} from "../pages/episode-details/episode-details";
         SplashScreen,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         MoviesProvider,
-        SeriesProvider
+        SeriesProvider,
+        YoutubeVideoPlayer
     ]
 })
 export class AppModule {

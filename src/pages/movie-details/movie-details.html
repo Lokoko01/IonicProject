@@ -65,6 +65,15 @@
                 </ion-col>
             </ion-row>
 
+            <ion-row>
+                <ion-col text-right>
+                    <button ion-button icon-end (click)="openYoutubeTrailer()">
+                        Watch Trailer
+                        <ion-icon name='md-videocam'></ion-icon>
+                    </button>
+                </ion-col>
+            </ion-row>
+
             <!-- Sections -->
             <ion-item-divider class="button-section" color="divider" (click)="awardsClicked()">
                 <span class="section">Prix et récompenses</span>
@@ -82,7 +91,7 @@
             </ion-item-divider>
             <div *ngIf="isDescriptionShown">
                 <ion-item text-wrap text-justify>
-                        {{details.Plot}}
+                    {{details.Plot}}
                 </ion-item>
             </div>
 

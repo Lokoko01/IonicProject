@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {MoviesProvider} from "../../providers/movies/movies";
+import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
+import {HttpClient} from "@angular/common/http";
 
 /**
  * Generated class for the MovieDetailsPage page.
@@ -8,6 +10,8 @@ import {MoviesProvider} from "../../providers/movies/movies";
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
+
+const YoutubeAPI = 'AIzaSyDgRvadeoQ9K3ZMi4r2tjv61hRUVmtquas';
 
 @IonicPage()
 @Component({
@@ -25,8 +29,10 @@ export class MovieDetailsPage {
     public isDescriptionShown = false;
     public isAwardsShown = false;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public moviesProvider: MoviesProvider) {
+    public videoId;
+    public trailer;
 
+    constructor(public navCtrl: NavController, public http: HttpClient, public navParams: NavParams, public moviesProvider: MoviesProvider, private youtube: YoutubeVideoPlayer) {
     }
 
     ionViewDidLoad() {
@@ -40,6 +46,12 @@ export class MovieDetailsPage {
                 this.actors = this.details.Actors.split(',');
                 this.genres = this.details.Genre.split(',');
                 this.awards = this.details.Awards.split('.');
+
+                this.getMovieTrailer(this.details.Title)
+                    .then(data => {
+                        this.trailer = data;
+                        this.videoId = this.trailer.items[0].id.videoId;
+                    });
             });
     }
 
@@ -57,6 +69,24 @@ export class MovieDetailsPage {
 
     awardsClicked() {
         this.isAwardsShown = !this.isAwardsShown;
+    }
+
+    getMovieTrailer(movieTitle: string) {
+        return new Promise(resolve => {
+            this.http.get(
+                "https://www.googleapis.com/youtube/v3/search?part=snippet&key=" +
+                YoutubeAPI +
+                "&q=" + movieTitle + "%20trailer&maxResults=1")
+                .subscribe(data => {
+                    resolve(data);
+                }, err => {
+                    console.log(err);
+                });
+        })
+    }
+
+    openYoutubeTrailer() {
+        this.youtube.openVideo(this.videoId);
     }
 
 }
