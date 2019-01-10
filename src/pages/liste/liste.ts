@@ -62,11 +62,14 @@ export class ListePage {
                 this.listeLength++;
             }
         }
+        if (this.listeLength == 0)
+            this.canRemoveAll = false;
     }
 
     removeAll() {
         this.favorites = null;
         this.storageProvider.clear();
         this.listeLength = 0;
+        this.canRemoveAll = false;
     }
 }
