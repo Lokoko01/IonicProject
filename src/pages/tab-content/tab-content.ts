@@ -22,8 +22,8 @@ export class TabContentPage {
     seriesRoot = SeriesPage
     listeRoot = ListePage
 
-
     constructor(public navCtrl: NavController) {
+
     }
 
 }

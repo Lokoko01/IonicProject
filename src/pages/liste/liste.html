@@ -6,13 +6,49 @@
 -->
 <ion-header>
 
-  <ion-navbar color='primary'>
-    <ion-title>Liste</ion-title>
-  </ion-navbar>
+    <ion-navbar color='primary'>
+        <ion-row align-items-center>
+            <ion-col>
+                <ion-title>
+                    Liste de {{listeLength}} élément(s)
+                </ion-title>
+            </ion-col>
+
+            <ion-col>
+                <button ion-button icon-start color="danger" float-right (click)="removeAll()">
+                    <ion-icon name="trash"></ion-icon>
+                    All
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+    <ion-list>
+        <ion-item-sliding *ngFor="let item of favorites">
+            <ion-item (click)='goTo(item.Id, item.type, item.numEpisode, item.numSeason, item.title)'>
+                <ion-badge>{{item.type}}</ion-badge>
+                {{item.Title}}
+                <ion-badge float-right>{{item.date | date: 'dd/MM/yyyy HH:mm'}}</ion-badge>
+            </ion-item>
 
+            <ion-item-options side="right">
+                <button ion-button icon-end color="danger" (click)="removeItem(item)">
+                    Delete
+                    <ion-icon name="trash"></ion-icon>
+                </button>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+
+    <ion-fab right bottom>
+        <button ion-fab color="dark">Export</button>
+        <ion-fab-list side="top">
+            <button ion-fab color="dark">CSV</button>
+            <button ion-fab color="dark">JSON</button>
+        </ion-fab-list>
+    </ion-fab>
 </ion-content>

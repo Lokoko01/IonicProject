@@ -3,6 +3,7 @@ import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {MoviesProvider} from "../../providers/movies/movies";
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 import {HttpClient} from "@angular/common/http";
+import {StorageProvider} from "../../providers/storage/storage";
 
 /**
  * Generated class for the MovieDetailsPage page.
@@ -29,14 +30,26 @@ export class MovieDetailsPage {
     public isDescriptionShown = false;
     public isAwardsShown = false;
 
+    public favorites;
+    public keyValue: { Id: string; Title: string; date: Date; type: string; numEpisode: string; numSeason: string; title: string };
+
     public videoId;
     public trailer;
 
-    constructor(public navCtrl: NavController, public http: HttpClient, public navParams: NavParams, public moviesProvider: MoviesProvider, private youtube: YoutubeVideoPlayer) {
+    public added: boolean = false;
+
+    constructor(public navCtrl: NavController,
+                public http: HttpClient,
+                public navParams: NavParams,
+                public moviesProvider: MoviesProvider,
+                private youtube: YoutubeVideoPlayer,
+                public storageProvider: StorageProvider) {
     }
 
-    ionViewDidLoad() {
+    ionViewWillEnter() {
         const imdbID = this.navParams.get('imdbID');
+        const added = this.navParams.get('added');
+        this.added = added;
         this.moviesProvider.getMovieDetails(imdbID)
             .then(data => {
                 this.details = data;
@@ -52,7 +65,22 @@ export class MovieDetailsPage {
                         this.trailer = data;
                         this.videoId = this.trailer.items[0].id.videoId;
                     });
+
+                this.storageProvider.get('favorites').then((data) => {
+                    this.favorites = data;
+
+                    if (data != null) {
+                        for (let item of this.favorites) {
+                            if (item.Id == this.details.imdbID)
+                                this.added = true;
+                        }
+                    }
+                });
             });
+    }
+
+    ionViewDidLoad() {
+
     }
 
     actorsClicked() {
@@ -87,6 +115,38 @@ export class MovieDetailsPage {
 
     openYoutubeTrailer() {
         this.youtube.openVideo(this.videoId);
+    }
+
+    addToFavorites() {
+        this.storageProvider.get('favorites').then((val) => {
+            this.favorites = val;
+            if (!this.favorites)
+                this.favorites = [];
+
+            this.keyValue = {
+                'Id': this.details.imdbID,
+                'Title': this.details.Title,
+                'date': new Date(),
+                'type': 'Film',
+                'numEpisode': null,
+                'numSeason': null,
+                'title': null
+            };
+
+            this.favorites.push(this.keyValue);
+            this.storageProvider.set('favorites', this.favorites);
+
+            this.added = true;
+        });
+    }
+
+    removeFromList(item: string) {
+        this.storageProvider.get('favorites').then((data) => {
+            this.favorites = data;
+            this.favorites.splice(this.favorites.indexOf(item), 1);
+            this.storageProvider.set('favorites', this.favorites);
+            this.added = false;
+        });
     }
 
 }

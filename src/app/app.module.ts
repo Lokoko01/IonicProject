@@ -18,6 +18,8 @@ import {SerieDetailsPage} from "../pages/serie-details/serie-details";
 import {SeasonDetailsPage} from "../pages/season-details/season-details";
 import {EpisodeDetailsPage} from "../pages/episode-details/episode-details";
 import {YoutubeVideoPlayer} from "@ionic-native/youtube-video-player";
+import {StorageProvider} from '../providers/storage/storage';
+import {IonicStorageModule} from "@ionic/storage";
 
 @NgModule({
     declarations: [
@@ -35,7 +37,8 @@ import {YoutubeVideoPlayer} from "@ionic-native/youtube-video-player";
     imports: [
         BrowserModule,
         IonicModule.forRoot(MyApp),
-        HttpClientModule
+        HttpClientModule,
+        IonicStorageModule.forRoot(),
     ],
     bootstrap: [IonicApp],
     entryComponents: [
@@ -56,7 +59,8 @@ import {YoutubeVideoPlayer} from "@ionic-native/youtube-video-player";
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         MoviesProvider,
         SeriesProvider,
-        YoutubeVideoPlayer
+        YoutubeVideoPlayer,
+        StorageProvider
     ]
 })
 export class AppModule {

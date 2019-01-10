@@ -65,6 +65,19 @@
                 </ion-col>
             </ion-row>
 
+            <ion-row>
+                <ion-col text-right>
+                    <button *ngIf="!added" ion-button icon-end (click)="addToFavorites()">
+                        Add to list
+                        <ion-icon name='add-circle'></ion-icon>
+                    </button>
+                    <button *ngIf="added" ion-button icon-end color="danger" (click)="removeFromList(details)">
+                        Remove
+                        <ion-icon name='trash'></ion-icon>
+                    </button>
+                </ion-col>
+            </ion-row>
+
             <!-- Sections -->
             <ion-item-divider class="button-section" color="divider" (click)="awardsClicked()">
                 <span class="section">Prix et récompenses</span>
