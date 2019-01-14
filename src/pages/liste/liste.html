@@ -47,8 +47,8 @@
     <ion-fab right bottom>
         <button ion-fab color="dark">Export</button>
         <ion-fab-list side="top">
-            <button ion-fab color="dark">CSV</button>
-            <button ion-fab color="dark">JSON</button>
+            <button ion-fab color="dark" (click)="share('json')">CSV</button>
+            <button ion-fab color="dark" (click)="share('json')">JSON</button>
         </ion-fab-list>
     </ion-fab>
 </ion-content>

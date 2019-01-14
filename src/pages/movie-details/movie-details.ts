@@ -4,6 +4,7 @@ import {MoviesProvider} from "../../providers/movies/movies";
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 import {HttpClient} from "@angular/common/http";
 import {StorageProvider} from "../../providers/storage/storage";
+import {SocialSharing} from "@ionic-native/social-sharing";
 
 /**
  * Generated class for the MovieDetailsPage page.
@@ -43,7 +44,8 @@ export class MovieDetailsPage {
                 public navParams: NavParams,
                 public moviesProvider: MoviesProvider,
                 private youtube: YoutubeVideoPlayer,
-                public storageProvider: StorageProvider) {
+                public storageProvider: StorageProvider,
+                private socialSharing: SocialSharing) {
     }
 
     ionViewWillEnter() {
@@ -147,6 +149,10 @@ export class MovieDetailsPage {
             this.storageProvider.set('favorites', this.favorites);
             this.added = false;
         });
+    }
+
+    downloadImg(poster: string) {
+        this.socialSharing.share(poster).then();
     }
 
 }

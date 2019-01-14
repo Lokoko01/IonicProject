@@ -20,6 +20,8 @@ import {EpisodeDetailsPage} from "../pages/episode-details/episode-details";
 import {YoutubeVideoPlayer} from "@ionic-native/youtube-video-player";
 import {StorageProvider} from '../providers/storage/storage';
 import {IonicStorageModule} from "@ionic/storage";
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { File } from '@ionic-native/file';
 
 @NgModule({
     declarations: [
@@ -60,7 +62,9 @@ import {IonicStorageModule} from "@ionic/storage";
         MoviesProvider,
         SeriesProvider,
         YoutubeVideoPlayer,
-        StorageProvider
+        StorageProvider,
+        SocialSharing,
+        File
     ]
 })
 export class AppModule {
